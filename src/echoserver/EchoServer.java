@@ -19,15 +19,11 @@ public class EchoServer {
         Socket client = sock.accept();
         System.out.println("Got a request!");
 
-        // Construct a writer so we can write to the socket, thereby
-        // sending something back to the client.
-
-
-
-        // Send the current date back tothe client.
+        // Initialize input and output streams
         InputStream input = client.getInputStream();
         OutputStream output = client.getOutputStream();
 
+        // Create int byte_type and run while loop returning client bytes
         int next_byte;
         while ((next_byte = input.read()) != -1) {
           output.write(next_byte);

@@ -20,8 +20,7 @@ public class EchoClient {
       // Connect to the server
       Socket socket = new Socket(server, portNumber);
 
-      // Get the input stream so we can read from that socket
-
+      // Initialize standard inputs/outputs and streams
       InputStream sinput = System.in;
       OutputStream soutput = System.out;
 
@@ -29,7 +28,7 @@ public class EchoClient {
       OutputStream output = socket.getOutputStream();
 
 
-      // Print all the input we receive from the server
+      // Send and receive data to/from the server
       int next_byte;
       while ((next_byte = sinput.read()) != -1) {
         output.write(next_byte);
@@ -37,7 +36,7 @@ public class EchoClient {
         soutput.write(next_byte);
       }
 
-      // Close the socket when we're done reading from it
+      // Close all sockets when we're done reading from them
       sinput.close();
       soutput.close();
       input.close();
