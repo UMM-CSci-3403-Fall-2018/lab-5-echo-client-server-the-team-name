@@ -1,5 +1,9 @@
 package echoserver;
 
+import java.net.*;
+import java.io.*;
+import java.util.Scanner;
+
 public class EchoServer {
 
   public static final int portNumber = 6013;
@@ -18,11 +22,16 @@ public class EchoServer {
         // Construct a writer so we can write to the socket, thereby
         // sending something back to the client.
 
-        PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+
 
         // Send the current date back tothe client.
-        InputStream cin = new InputStream();
-        writer.println(new java.util.Date().toString());
+        InputStream input = client.getInputStream();
+        OutputStream output = client.getOutputStream();
+
+        int next_byte;
+        while ((next_byte = input.read()) != -1) {
+          output.write(next_byte);
+        }
 
         // Close the client socket since we're done.
         client.close();
