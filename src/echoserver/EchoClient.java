@@ -1,6 +1,8 @@
+package echoserver;
+
 import java.net.*;
 import java.io.*;
-package echoserver;
+import java.util.Scanner;
 
 public class EchoClient {
   public static final int portNumber = 6013;
@@ -23,12 +25,13 @@ public class EchoClient {
       InputStream sinput = System.in;
       OutputStream soutput = System.out;
 
-      OutputStream output = socket.getOutputStream();
       InputStream input = socket.getInputStream();
+      OutputStream output = socket.getOutputStream();
+
 
       // Print all the input we receive from the server
       int next_byte;
-      while ((next_byte = sinput.read() != -1) {
+      while ((next_byte = sinput.read()) != -1) {
         output.write(next_byte);
         next_byte = input.read();
         soutput.write(next_byte);
